@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabuada</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #00FFC6;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    div {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00FFC6;
+      border-radius: 20px;
+      padding: 20px;
+      width: 350px;
+      box-shadow: 0px 0px 15px 5px #00FFC6;
+      animation: glow 2s infinite ease-in-out;
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #00FFC6;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #E0FFFF;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0px 0px 15px 5px #00FFC6; }
+      50% { box-shadow: 0px 0px 25px 10px #00FFC6; }
+      100% { box-shadow: 0px 0px 15px 5px #00FFC6; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="tabuadaContainer">
+  </div>
+
+  <script>
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      const tabuada = params.get('tabuada');
+      const sequencia = params.get('sequencia') || 10;
+      return { tabuada: parseInt(tabuada), sequencia: parseInt(sequencia) };
+    }
+
+    function gerarTabuada(tabuada, sequencia) {
+      const container = document.getElementById('tabuadaContainer');
+      if (isNaN(tabuada)) {
+        container.innerHTML = '<h1>Digite na URL: https://projeto-uv2h.vercel.app/?tabuada=um_numero&sequencia=um_numero</h1>';
+      } else {
+        let conteudo = `<h1>Tabuada do ${tabuada} até ${sequencia}</h1>`;
+        for (let i = 0; i <= sequencia; i++) {
+          conteudo += `<p>${tabuada} x ${i} = ${tabuada * i}</p>`;
+        }
+        container.innerHTML = conteudo;
+      }
+    }
+
+    const { tabuada, sequencia } = getQueryParams();
+    gerarTabuada(tabuada, sequencia);
+  </script>
+
+</body>
+</html>

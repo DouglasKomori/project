@@ -69,7 +69,7 @@ function respoderRe(requisicao, resposta) {
       }
       resposta.write('</div>')
     } else {
-      resposta.write("<h1>Digite na url https://projeto-uv2h.vercel.app/?tabuada=um_numero&sequencia=um_numero </h1>")
+      resposta.write("<h1>Digite na url https://project-lyart-zeta-98.vercel.app/?tabuada=um_numero&sequencia=um_numero </h1>")
     }
 
     resposta.write('</body>')
